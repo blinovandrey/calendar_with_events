@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :render_404
 
   def render_404      
-     render file: "/public/404.html", status: 404
+    render file: "/public/404.html", status: 404
   end
 
   def set_csrf_cookie_for_ng

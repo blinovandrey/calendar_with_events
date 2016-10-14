@@ -40,10 +40,14 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
+group :production do
+  gem 'rails_12factor', '0.0.2'
+end
+
 gem 'devise'
 gem 'bower-rails'
 gem 'angular-rails-templates'
 gem "sprockets", "~> 2.0"
 gem 'bcrypt'
 gem 'faker'
-#gem 'tzinfo-data'
+gem 'tzinfo-data'
