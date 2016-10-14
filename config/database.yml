@@ -89,6 +89,4 @@ development:
 #
 production:
   <<: *default
-  database: calendar_events_production
-  username: calendar_events
-  password: <%= ENV['CALENDAR_EVENTS_DATABASE_PASSWORD'] %>
+  database: dcpu4lbmpne0nh
