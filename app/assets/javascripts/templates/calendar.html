@@ -1,0 +1,64 @@
+<p>{{getFlashMessage()}}</p>
+<div class="calendar">
+  <div class="panel panel-default">
+    <header class="panel-heading">
+      <div class="row vertical-center">
+        <span class="col-md-2 col-md-offset-1 h3">
+          <button type="submit" class="btn btn-default btn-navigate" ng-click="loadCalendarPreviousMonth()">
+            <span class="glyphicon glyphicon-chevron-left"></span> Previous
+          </button>
+        </span>
+        <span class="col-md-4 text-center">
+          <h3>
+            <span>
+              <select class="col-md-6 params" name="month" 
+                      ng-model="month" ng-options="months.indexOf(m) + 1 as m for m in months"  
+                      ng-change="loadCalendar(year,month, by_user)">
+              </select>
+            </span>
+            <span>
+              <input class="col-md-5 col-md-offset-1 params params-input" type="number" name="year" ng-model="year" ng-change="loadCalendar(year, month, by_user)">
+              </input>
+            </span>
+          </h3>
+        </span>
+        <span class="col-md-2 h3">
+          <button type="submit" class="btn btn-default btn-navigate" ng-click="loadCalendarNextMonth()">
+            <span class="glyphicon glyphicon-chevron-right"></span> Next
+          </button>
+        </span>
+        <span class="col-md-2 col-md-offset-1 btn-group h3" role="group" ng-init="by_user = false">
+          <button type="button" class="btn btn-default" ng-click="setAllActive()" 
+                  ng-class="{'active': !by_user }">All events</button>
+          <button type="button" class="btn btn-default" ng-click="setMyActive()"
+                  ng-class="{'active': by_user }">My events</button>
+        </span>
+      </div>
+    </header>
+    <div class="panel-body"> 
+      <table class="table table-bordered">
+        <thead>
+          <th class="text-primary"><h3>Mon</h3></th>
+          <th class="text-primary"><h3>Tue</h3></th>
+          <th class="text-primary"><h3>Wed</h3></th>
+          <th class="text-primary"><h3>Thu</h3></th>
+          <th class="text-primary"><h3>Fri</h3></th>
+          <th class="text-primary"><h3>Sat</h3></th>
+          <th class="text-primary"><h3>Sun</h3></th>
+        </thead>
+        <tr ng-repeat="week in calendar.weeks">
+          <td ng-repeat="day in calendar.days.slice(7 * week, 7 * week + 7)"
+              ng-mouseover="hoverIn()" 
+              ng-mouseleave="hoverOut()"
+              ng-class="{'hovered':hovered}"
+              ng-click="openTasks(day)">
+            <small ng-show="day.events_count > 0" class="pull-right">
+              {{day.events_count}} events
+            </small>
+            <h1 ng-class="{'foreign-month': month !== getMonth(day.date) + 1}">{{getDate(day.date)}}</h1>
+          </td>
+        </tr>
+      </table> 
+    </div>
+  </div>
+</div>

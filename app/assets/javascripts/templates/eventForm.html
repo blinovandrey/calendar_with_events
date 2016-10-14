@@ -1,0 +1,67 @@
+<form>
+  <div class="col-md-6 col-md-offset-1">
+    <p class="text-danger" ng-repeat="error in errors">{{error}}</p>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <textarea class="form-control" name="title" ng-model="event.title"></textarea> 
+    </div>
+
+    <p ng-show="event.user_id !== undefined"><label>Author:</label> {{event.full_name}}</p>
+
+    <div class="form-group">
+      <label for="repeat">Repeats:</label>
+      <select class="col-md-6 form-control" name="repeat" ng-model="event.repeat" ng-options="repeat[1] as repeat[0] for repeat in repeats"></select>
+    </div>
+
+    <div class="form-group">
+      <label for="date_start">Date of start:</label>
+      <p class="col-md-6 input-group">
+        <input type="text"
+               readonly
+               class="form-control date-input" 
+               uib-datepicker-popup
+               datetimepicker-neutral-timezone
+               ng-change="dropLastDayFlag()"
+               ng-model="event.date_start"
+               is-open="datePickerOpen.isOpenStart">
+        </input>
+        <span class="input-group-btn">
+          <button type="button" 
+                  class="btn btn-default"
+                  ng-click="setOpenStart($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+        <div class="checkbox" ng-show="event.date_start.getDate()>28 && event.repeat !== 'once'">
+          <label><input type="checkbox" ng-model="event.last_day_of_month">Always use last day of month</label>
+        </div>
+      </p>
+    </div>
+
+    <div class="form-group" ng-show="event.repeat !== 'once'">
+      <label for="date_start">Date of end:</label>
+      <p class="col-md-6 input-group">
+        <input type="text" 
+               readonly
+               class="form-control date-input" 
+               uib-datepicker-popup
+               datetimepicker-neutral-timezone
+               ng-model="event.date_end"
+               is-open="datePickerOpen.isOpenEnd">
+        </input>
+        <span class="input-group-btn">
+          <button type="button" 
+                  class="btn btn-default" 
+                  ng-click="setOpenEnd($event)">
+            <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+        </span>
+      </p>
+    </div>
+
+    <div class="form-group">
+      <button class="col-md-2 btn btn-small btn-primary" ng-click="save()">Save</button>
+      <button class="col-md-3 col-md-offset-1 btn btn-small btn-primary" ng-click="back()">Back to calendar</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,34 @@
+.calendar {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.vertical-center {
+  vertical-align: middle;
+}
+
+.btn-navigate {
+  width: 100%;
+}
+
+.params {
+  border: none;
+  background-color: white;
+}
+
+.params-input {
+  height: 32px;
+}
+
+.foreign-month {
+  color: gray;
+}
+
+.hovered {
+  background-color: silver;
+  cursor: pointer;
+}
+
+.btn-logout {
+  text-decoration: none !important; 
+}

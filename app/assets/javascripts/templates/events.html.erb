@@ -1,0 +1,21 @@
+<span class="row">
+  <h1 class="text-center"> Events on {{day.date | date:'LLLL d, y'}}
+  <a class="btn btn-primary col-md-offset-1" href="" ng-click="new()">New event</a></h1>
+</span>
+
+<ol class="list-group text-center events-list-header">
+  <li class="list-group-item clearfix events-list-item">
+      <span class="col-md-6"><h4>Title</h4></span>
+      <span class="col-md-2"><h4>Repeats</h4></span>
+      <span class="col-md-2"><h4>Author</h4></span>
+  </li>
+</ol>
+
+<ol class="list-group text-center events-list" when-scrolled="loadMore()">
+  <li class="list-group-item clearfix events-list-item" ng-repeat="event in events">
+      <span class="col-md-6"><a href="" ng-click="show(event)">{{event.title}}</a></span>
+      <span class="col-md-2">{{event.repeat_human}}</span>
+      <span class="col-md-2">{{event.full_name}}</span>
+      <span ng-show="event.mine"class="col-md-2 pull-right"><a class="btn btn-danger" href="" ng-click="delete(event, $index)">Delete</a></span>
+  </li>
+</ol>

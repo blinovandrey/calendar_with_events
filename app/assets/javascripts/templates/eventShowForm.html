@@ -1,0 +1,12 @@
+<h1 class="text-center">Event details</h1>
+<div class="col-md-6 col-md-offset-1">
+  <p>Title: {{event.title}}</p>
+  <p>Author: {{event.full_name}}</p>
+  <p>Repeats: {{event.repeat_human}}</p>
+  <p>Date of start: {{event.date_start}}</p>
+  <p ng-show="event.date_start.getDate()>28 && event.repeat !== 'once'">
+    <input type="checkbox" ng-disabled="true" ng-model="event.last_day_of_month"> Always use last day of month
+  </p>
+  <p ng-show="event.date_end !== null">Date of end: {{event.date_end}}</p>
+  <button class="col-md-3 btn btn-primary" ng-click="back()">Back to calendar</button> 
+</div>

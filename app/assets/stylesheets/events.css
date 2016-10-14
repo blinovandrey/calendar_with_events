@@ -1,0 +1,28 @@
+.ngdialog-content {
+  width: 1000px !important;
+  margin-top: -100px !important;
+}
+
+.list-group-item.clearfix.events-list-item {
+  background-color: #f0f0f0;
+  text-align: left;
+  word-wrap : break-word;
+}
+
+.events-list {
+  height: 360px;
+  overflow: auto;
+}
+
+ol.events-list-header {
+padding-bottom: 0px;
+margin-bottom: 0px;
+}
+
+.ngdialog.ngdialog-theme-default {
+    overflow: hidden;
+}
+
+.date-input.form-control[readonly]{
+  background-color: #fff;
+}
