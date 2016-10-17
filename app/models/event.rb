@@ -1,5 +1,8 @@
 class Event < ActiveRecord::Base
   enum repeat: { once: 0, every_day: 1, every_week: 2, every_month: 3, every_year: 4 }
+  scope :set_by_day, -> (day, user_id, offset) {select("events.*, users.full_name")
+      .on_day(day, user_id).joins(:user).offset(offset.to_i)
+      .limit(20).order(updated_at: :desc)}
 
   belongs_to :repeat
   belongs_to :user

@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
   before_action :authorize
+  
+
   def index
-    user_id = params[:by_user] == 'true' ? session[:user_id] : 0
-    @events = Event.select("events.*, users.full_name")
-      .on_day(params[:day], user_id).joins(:user).offset(params[:offset].to_i)
-      .limit(20).order(updated_at: :desc)
+    user_id = set_user_id(params[:by_user])
+    @events = Event.set_by_day(params[:day], user_id, params[:offset])
   end
 
   def edit
@@ -46,6 +46,10 @@ class EventsController < ApplicationController
 
 
   private
+
+  def set_user_id(param)
+    param == 'true' ? session[:user_id] : 0
+  end
 
   def event_params
     params.require(:event).permit(:title, :date_start, :last_day_of_month, :date_end, :repeat, :user_id)
